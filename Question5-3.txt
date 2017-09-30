@@ -1,0 +1,18 @@
+Effect 1: Photon mapping is a biased estimation. As the result, the final image regardless
+of number of iterations does not converge to the desired image. Although one can claim that
+rendering a plausible image is possible by infinitely many photons in the scene. The variance
+of photon mapping is small so the error reduces faster. Path tracing converges to the desired
+image but it takes a very long time (in this case we still do not have a plausible image after
+100 or 500 iterations while we get a plausible image by photo mapping in only 10 iterations)
+
+Effect 2: The noise in the cornell_box_water scene for path tracing in the water area is much
+than corresponding area in the image rendered by photon mapping. The reason is, in path tracing
+when the ray hits the floor, then the next event estimator cannot help in the convergence because
+there is an object on top of it (surface of the water) which causes an occlusion. Thus, another
+bounce must be traced by the BRDF density function which hardly has a chance to end up on the light
+source.
+But in photon mapping, this issue does not exist since there are photons on the floor already
+(refracted by water) before we do the ray tracing.
+
+
+
